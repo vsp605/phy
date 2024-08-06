@@ -1,0 +1,36 @@
+Write a trigger to display the salary difference between the old and new salary before updating.
+
+
+create or replace trigger sal_vibha
+before update of salary ON COMP_MAH4006
+for each row 
+declare  
+   diff COMP_MAH4006.salary%type;  
+BEGIN
+   diff:=:new.salary-:old.salary;
+  
+   DBMS_OUTPUT.PUT_LINE('old is  ==' || :old.salary);
+   DBMS_OUTPUT.PUT_LINE('new id ==' || :new.salary);
+ DBMS_OUTPUT.PUT_LINE('DIFFIERNCE IS =='   || diff);
+
+END;
+/
+
+update COMP_MAH4006 set salary= 0.1*salary + salary where SSN=123456789;	
+
+
+Create trigger to display total number of employees working  for department research in organization/company before inserting new record .
+
+
+CREATE OR REPLACE TRIGGER simpi
+BEFORE INSERT ON COMP_MAH400
+FOR EACH ROW
+DECLARE
+   c int;
+    v_count int;
+BEGIN
+      SELECT Dnumber INTO c    FROM DEPTMENT_MAH400     WHERE Dname = 'Admin';
+    SELECT COUNT(*)   as ss INTO v_count from  COMP_MAH400  WHERE Dno= c;
+   DBMS_OUTPUT.PUT_LINE('Total number of employees in adminmaha department: ' || v_count);
+END;
+/

@@ -1,0 +1,35 @@
+
+Define a EXPLICIT cursor to display the ssn, fname and dependent names of employees.
+
+DECLARE
+c_fname  COMP_MAH4002.Fname%type;
+c_SSN COMP_MAH4002.SSN%type;
+c_dname DEPEDENT1020.De_name%type;
+cursor display is
+SELECT Fname, SSN, De_name FROM COMP_MAH4002, DEPEDENT1020 where SSN=ESSN;
+BEGIN
+OPEN display;
+LOOP
+FETCH display into c_Fname, c_SSN, c_dname;
+EXIT WHEN display%notfound;
+
+dbms_output.put_line('Fname is=' || c_fname);
+dbms_output.put_line('SSN  is=' || c_SSN);
+dbms_output.put_line('depednt name   is=' ||c_dname);
+END LOOP;
+CLOSE display;
+END;
+/
+
+DECLARE
+c integer;
+begin
+UPDATE COMP_MAH400 SET salary =salary+ 5000 WHERE SSN IN (SELECT ESSN    FROM  WORKS_ONN111   WHERE Pno IN (1, 2));
+c:=SQL%ROWCOUNT;
+if (c>4) then
+dbms_output.put_line('many emp are benefitted');
+else 
+dbms_output.put_line('few are benefitted');
+end if;
+END;
+/

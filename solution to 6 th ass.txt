@@ -1,0 +1,42 @@
+
+1.	Write a stored procedure to add new department record accept the input from user.
+
+
+
+create or replace procedure addv(nname in DEPTMENT_MAH400.Dname%type, ndno in DEPTMENT_MAH400.Dnumber%type, ass DEPTMENT_MAH400.Mgr_SSN%type,  md in DEPTMENT_MAH400.Mgr_start_date%type) 
+as
+ begin
+   insert into DEPTMENT_MAH400 values (nname, ndno, ass, md);
+   
+end;
+ /
+begin
+ addv( 'mahakam',98021, null, null);
+
+end
+/
+
+
+
+2.	Write a stored procedure to display the employee name and salary if name of the working department and ssn of the employee is passed
+
+
+create or replace procedure  display(mssn in COMP_MAH400.SSN%type, mDname in DEPTMENT_MAH400.Dname%type, mname out COMP_MAH400.Fname%type, msal out COMP_MAH400.salary%type)
+ is
+   
+begin
+  select Fname, salary into mname, msal from COMP_MAH400, DEPTMENT_MAH400 where Dname=mDname and SSN=mssn;
+ end;
+/
+ declare 
+  mname COMP_MAH400.Fname%type;
+  msal COMP_MAH400.salary%type;
+  begin
+ display(987654321, 'Admin', mname, msal);
+dbms_output.put_line('name = ' ||mname);
+dbms_output.put_line('salary ' ||msal);
+  end;
+/
+
+
+3.  

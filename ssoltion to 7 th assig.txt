@@ -1,0 +1,19 @@
+
+1.	Write a stored function to display salary of employee if ssn of employee is passed as an argument.
+
+create or replace function hub(emessn in COMP_MAH400.SSN%type) return int 
+   as
+   tor int;
+   begin 
+   select  salary into tor from COMP_MAH400 where SSN=emessn;
+    return tor;
+end;
+/
+
+declare 
+   c integer;
+ begin
+    c:=hub(123456789);
+  dbms_output.put_line('total ' ||c);
+   end;
+  /

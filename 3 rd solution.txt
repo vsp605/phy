@@ -1,0 +1,81 @@
+1  select  Fname, salary, Dno
+ from COMP_MAH400
+where ( Dno=5 and salary >3000)
+  or 
+      (Dno=4 and salary >2500)
+ 
+
+
+  
+ 3  select Pname, Pnumber
+from PROJECT_COMP111
+where Dnum=5
+
+
+  
+4  select Pno 
+from WORKS_ONN111
+where hours  >30
+
+ 5 select Fname
+from COMP_MAH400
+where SSN in( select  Mgr_SSN from  DEPTMENT_MAH400 )
+
+ 6   select De_name
+ from DEPEDENT400
+where extract(year from Bdate)=2024
+
+
+7  SELECT Pname 
+FROM PROJECT_COMP400
+WHERE    Plocation like  '%u%'
+ 
+  8 select Fname, SSN
+from COMP_MAH400
+where SSN in( select  ESSN from  DEPEDENT111 )
+
+
+9 select Lname,salary
+ from COMP_MAH400,  DEPTMENT_LOCCACA_tion111
+where  Dlocation ='Staford' 
+
+10
+
+
+11 select ESSN
+   from COMP_MAH400
+ where SSN  IN (select ESSN from  WORKS_ONN111)
+ 
+12 select SSN 
+ from COMP_MAH400
+ where SSN in(select ESSN from WORKS_ONN111)
+             or
+ where SSN in(select ESSN from DEPEDENT400)
+
+
+13 select SSN 
+ from COMP_MAH400
+   where SSN in( select ESSN from WORKS_ONN111)
+      union
+        (select ESSN  from DEPEDENT400)
+
+14 select Fname
+     from COMP_MAH400
+     order  by salary asc,  Dno desc
+
+
+ 15   SELECT De_name
+     FROM DEPEDENT400
+   ORDER BY Bdate desc
+
+
+
+ 16     select Fname, Lname
+          from  COMP_MAH400
+         where salary >all( select salary from COMP_MAH400 where Dnum=5)
+
+
+
+17       select SSN 
+           from COMP_MAH400
+                where SSN  = any(select ESSN from WORKS_ONN111)
